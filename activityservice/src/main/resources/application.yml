@@ -1,5 +1,6 @@
 spring:
   application:
+    # must match the yml filename stored in the configserver "resources/config/"
     name: activity-service-application
   config:
     import: optional:configserver:http://localhost:8888

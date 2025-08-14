@@ -1,6 +1,6 @@
 spring:
   application:
     # must match the yml filename stored in the configserver "resources/config/"
-    name: ai-service-application
+    name: gateway-application
   config:
     import: optional:configserver:http://localhost:8888
