@@ -48,10 +48,10 @@ public class ActivityAIService {
             JsonNode analysisJson = mapper.readTree(jsonContent);
             JsonNode analysisNode = analysisJson.path("analysis");
             StringBuilder fullAnalysis = new StringBuilder();
-            addAnalysisSection(fullAnalysis, analysisNode, "overall", "Overall:");
-            addAnalysisSection(fullAnalysis, analysisNode, "pace", "Pace:");
-            addAnalysisSection(fullAnalysis, analysisNode, "heartRate", "Heart Rate:");
-            addAnalysisSection(fullAnalysis, analysisNode, "caloriesBurned", "Calories:");
+            addAnalysisSection(fullAnalysis, analysisNode, "overall", "Overall: ");
+            addAnalysisSection(fullAnalysis, analysisNode, "pace", "Pace: ");
+            addAnalysisSection(fullAnalysis, analysisNode, "heartRate", "Heart Rate: ");
+            addAnalysisSection(fullAnalysis, analysisNode, "caloriesBurned", "Calories: ");
 
             List<String> improvements = extractImprovements(analysisJson.path("improvements"));
             List<String> suggestions = extractSuggestions(analysisJson.path("suggestions"));
@@ -61,7 +61,7 @@ public class ActivityAIService {
                     .activityId(activity.getId())
                     .userId(activity.getUserId())
                     .activityType(activity.getType())
-                    .recommendation(fullAnalysis.toString().trim())
+                    .analysis(fullAnalysis.toString().trim())
                     .improvements(improvements)
                     .suggestions(suggestions)
                     .safety(safety)
@@ -80,7 +80,7 @@ public class ActivityAIService {
                 .activityId(activity.getId())
                 .userId(activity.getUserId())
                 .activityType(activity.getType())
-                .recommendation("Unable to generate detailed analysis")
+                .analysis("Unable to generate detailed analysis")
                 .improvements(Collections.singletonList("Continue with your current routine"))
                 .suggestions(Collections.singletonList("Consider consulting a fitness professional"))
                 .safety(Arrays.asList(
